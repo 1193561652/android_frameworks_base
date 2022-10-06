@@ -229,4 +229,6 @@
 
   <!-- Accessibility action identifier for {@link android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction#ACTION_IME_ENTER}. -->
   <item type="id" name="accessibilityActionImeEnter" />
+
+  <item type="id" name="toast_bg" />
 </resources>

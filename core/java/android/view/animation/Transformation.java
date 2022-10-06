@@ -82,6 +82,7 @@ public class Transformation {
         mClipRect.setEmpty();
         mHasClipRect = false;
         mAlpha = 1.0f;
+        mIndex = 1.0f;
         mTransformationType = TYPE_BOTH;
     }
 
@@ -131,7 +132,7 @@ public class Transformation {
      */
     public void compose(Transformation t) {
         mAlpha *= t.getAlpha();
-        mIndex = Math.max(mIndex, t.getIndex());
+        mIndex = Math.min(mIndex, t.getIndex());
         mMatrix.preConcat(t.getMatrix());
         if (t.mHasClipRect) {
             Rect bounds = t.getClipRect();
@@ -151,7 +152,7 @@ public class Transformation {
      */
     public void postCompose(Transformation t) {
         mAlpha *= t.getAlpha();
-        mIndex = Math.max(mIndex, t.getIndex());
+        mIndex = Math.min(mIndex, t.getIndex());
         mMatrix.postConcat(t.getMatrix());
         if (t.mHasClipRect) {
             Rect bounds = t.getClipRect();
