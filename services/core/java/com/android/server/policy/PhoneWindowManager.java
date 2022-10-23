@@ -2215,11 +2215,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             @Override
             public int onAppTransitionStartingLocked(int transit, long duration,
                     long statusBarAnimationStartTime, long statusBarAnimationDuration) {
-                return handleStartTransitionForKeyguardLw(transit, duration);
+                return handleStartTransitionForKeyguardLw(transit, 2000/*duration*/);
             }
 
             @Override
             public void onAppTransitionCancelledLocked(int transit) {
+                // BAT
                 handleStartTransitionForKeyguardLw(transit, 0 /* duration */);
             }
         });
@@ -2916,6 +2917,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     @Override
     public Animation createHiddenByKeyguardExit(boolean onWallpaper,
             boolean goingToNotificationShade, boolean subtleAnimation) {
+        Log.e("BAT", "createHiddenByKeyguardExit onWallpaper=" + onWallpaper + " goingToNotificationShade=" + goingToNotificationShade + " subtleAnimation=" + subtleAnimation);
         if (goingToNotificationShade) {
             return AnimationUtils.loadAnimation(mContext, R.anim.lock_screen_behind_enter_fade_in);
         }
@@ -3762,6 +3764,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
         if (AppTransition.isKeyguardGoingAwayTransit(transit)) {
             if (DEBUG_KEYGUARD) Slog.d(TAG, "Starting keyguard exit animation");
+            Log.e("BAT", "handleStartTransitionForKeyguardLw duration=" + duration);
             startKeyguardExitAnimation(SystemClock.uptimeMillis(), duration);
         }
         return 0;
@@ -5516,6 +5519,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     public void startKeyguardExitAnimation(long startTime, long fadeoutDuration) {
         if (mKeyguardDelegate != null) {
             if (DEBUG_KEYGUARD) Slog.d(TAG, "PWM.startKeyguardExitAnimation");
+            Log.e("BAT", "startKeyguardExitAnimation fadeoutDuration=" + fadeoutDuration);
             mKeyguardDelegate.startKeyguardExitAnimation(startTime, fadeoutDuration);
         }
     }

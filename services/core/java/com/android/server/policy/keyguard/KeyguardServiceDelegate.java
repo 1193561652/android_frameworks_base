@@ -396,6 +396,7 @@ public class KeyguardServiceDelegate {
 
     public void startKeyguardExitAnimation(long startTime, long fadeoutDuration) {
         if (mKeyguardService != null) {
+            Log.e("BAT", "startKeyguardExitAnimation fadeoutDuration=" + fadeoutDuration);
             mKeyguardService.startKeyguardExitAnimation(startTime, fadeoutDuration);
         }
     }

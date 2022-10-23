@@ -494,7 +494,7 @@ public class BiometricUnlockController extends KeyguardUpdateMonitorCallback imp
                 || biometricSourceType == BiometricSourceType.IRIS) {
             return calculateModeForPassiveAuth(isStrongBiometric);
         } else {
-            return calculateModeForFingerprint(isStrongBiometric);
+            return calculateModeForFingerprint(isStrongBiometric);  // 
         }
     }
 
@@ -509,7 +509,7 @@ public class BiometricUnlockController extends KeyguardUpdateMonitorCallback imp
             } else if (mDozeScrimController.isPulsing() && unlockingAllowed) {
                 return MODE_WAKE_AND_UNLOCK_PULSING;
             } else if (unlockingAllowed || !mKeyguardStateController.isMethodSecure()) {
-                return MODE_WAKE_AND_UNLOCK;
+                return MODE_UNLOCK_COLLAPSING/*MODE_WAKE_AND_UNLOCK*/;
             } else {
                 return MODE_SHOW_BOUNCER;
             }

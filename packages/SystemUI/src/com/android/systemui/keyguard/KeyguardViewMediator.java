@@ -1716,6 +1716,7 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable {
                     Trace.beginSection(
                             "KeyguardViewMediator#handleMessage START_KEYGUARD_EXIT_ANIM");
                     StartKeyguardExitAnimParams params = (StartKeyguardExitAnimParams) msg.obj;
+                    Log.e("BAT", "START_KEYGUARD_EXIT_ANIM fadeoutDuration=" + params.fadeoutDuration);
                     handleStartKeyguardExitAnimation(params.startTime, params.fadeoutDuration);
                     mFalsingManager.onSuccessfulUnlock();
                     Trace.endSection();
@@ -1928,7 +1929,8 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable {
             Trace.beginSection("KeyguardViewMediator.mKeyGuardGoingAwayRunnable");
             if (DEBUG) Log.d(TAG, "keyguardGoingAway");
             mKeyguardViewControllerLazy.get().keyguardGoingAway();
-
+            Log.e("BAT", "KeyguardViewMediator mWakeAndUnlocking=" + mWakeAndUnlocking + 
+                " mPulsing=" + mPulsing + " shouldDisableWindowAnimationsForUnlock:" + mKeyguardViewControllerLazy.get().shouldDisableWindowAnimationsForUnlock());
             int flags = 0;
             if (mKeyguardViewControllerLazy.get().shouldDisableWindowAnimationsForUnlock()
                     || (mWakeAndUnlocking && !mPulsing)) {
@@ -1979,7 +1981,7 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable {
      */
     private void handleHide() {
         Trace.beginSection("KeyguardViewMediator#handleHide");
-
+        Log.e("BAT", "handleHide in");
         synchronized (KeyguardViewMediator.this) {
             if (DEBUG) Log.d(TAG, "handleHide");
 
@@ -2008,6 +2010,8 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable {
         Trace.beginSection("KeyguardViewMediator#handleStartKeyguardExitAnimation");
         if (DEBUG) Log.d(TAG, "handleStartKeyguardExitAnimation startTime=" + startTime
                 + " fadeoutDuration=" + fadeoutDuration);
+
+        Log.e("BAT", "handleStartKeyguardExitAnimation startTime=" + startTime + " fadeoutDuration=" + fadeoutDuration);
         synchronized (KeyguardViewMediator.this) {
 
             if (!mHiding) {

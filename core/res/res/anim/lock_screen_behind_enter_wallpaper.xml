@@ -31,6 +31,6 @@
     -->
     <bat android:fromYDelta="100%p" android:toYDelta="0"
         android:fillEnabled="true" android:fillBefore="true" android:fillAfter="true"
-        android:interpolator="@interpolator/decelerate_quint"
-        android:duration="10000" />
+        android:interpolator="@interpolator/linear"
+        android:duration="2000" />
 </set>

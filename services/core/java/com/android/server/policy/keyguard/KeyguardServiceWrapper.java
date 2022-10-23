@@ -230,6 +230,7 @@ public class KeyguardServiceWrapper implements IKeyguardService {
     @Override // Binder interface
     public void startKeyguardExitAnimation(long startTime, long fadeoutDuration) {
         try {
+            Slog.w("BAT", "startKeyguardExitAnimation fadeoutDuration=" + fadeoutDuration);
             mService.startKeyguardExitAnimation(startTime, fadeoutDuration);
         } catch (RemoteException e) {
             Slog.w(TAG , "Remote Exception", e);

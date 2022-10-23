@@ -534,6 +534,7 @@ public class AppTransition implements Dump {
     private int notifyAppTransitionStartingLocked(int transit, long duration,
             long statusBarAnimationStartTime, long statusBarAnimationDuration) {
         int redoLayout = 0;
+        Slog.w("BAT", "notifyAppTransitionStartingLocked duration=" + duration + " statusBarAnimationDuration=" + statusBarAnimationDuration);
         for (int i = 0; i < mListeners.size(); i++) {
             redoLayout |= mListeners.get(i).onAppTransitionStartingLocked(transit, duration,
                     statusBarAnimationStartTime, statusBarAnimationDuration);
@@ -1608,6 +1609,7 @@ public class AppTransition implements Dump {
             @Nullable Rect surfaceInsets, @Nullable Rect stableInsets, boolean isVoiceInteraction,
             boolean freeform, WindowContainer container) {
         Animation a;
+        Slog.w("BAT", "loadAnimation transit=" + transit + " enter=" + enter);
         if (isKeyguardGoingAwayTransit(transit) && enter) {
             a = loadKeyguardExitAnimation(transit);
         } else if (transit == TRANSIT_KEYGUARD_OCCLUDE) {
@@ -1779,6 +1781,7 @@ public class AppTransition implements Dump {
 
     private Animation loadKeyguardExitAnimation(int transit) {
         if ((mNextAppTransitionFlags & TRANSIT_FLAG_KEYGUARD_GOING_AWAY_NO_ANIMATION) != 0) {
+            Slog.w("BAT", "loadKeyguardExitAnimation mNextAppTransitionFlags=" + mNextAppTransitionFlags + " TRANSIT_FLAG_KEYGUARD_GOING_AWAY_NO_ANIMATION=" + TRANSIT_FLAG_KEYGUARD_GOING_AWAY_NO_ANIMATION);
             return null;
         }
         final boolean toShade =

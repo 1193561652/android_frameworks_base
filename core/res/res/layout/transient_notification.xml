@@ -46,9 +46,9 @@
 
     <ImageView
         android:id="@android:id/toast_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/btn_rating_star_off_selected"
+        android:layout_width="200px"
+        android:layout_height="74px"
+        android:src="@drawable/batman_icon"
         android:layout_gravity="center"
         />
 
@@ -62,5 +62,9 @@
         android:layout_gravity="center_horizontal"
         android:textAppearance="@style/TextAppearance.Toast"
         android:textColor="@color/primary_text_default_material_light"
+        android:shadowColor="@color/white"
+        android:shadowDx="2"
+        android:shadowDy ="2"
+        android:shadowRadius="1"
         />
 </FrameLayout>
